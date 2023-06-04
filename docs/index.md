@@ -14,7 +14,7 @@ Das WebGIS teilt sich in verschieden Modi, welche ihrerseits über zugeschnitten
 *   [VZ / PM](#vz--pm) &rarr; Verwaltung von zurückgestellten Vermarkungen und Projektmutationen
 *   [Archiv](#archiv) &rarr; abgeschlossene Aufträge
 
-Hintergrundauswahl, Parzellensuche, Legende (jeweils angepasst), Massstabsbalken und Quellenangabe sind in allen Modi verfügbar. Die weiteren Funktionen der Modi werden in den folgenden Abschnitten erläutert.
+Hintergrundauswahl, Parzellensuche, Legende (jeweils angepasst), Massstabsbalken, Quellenangabe und Hilfestellung sind in allen Modi verfügbar. Die weiteren Funktionen der Modi werden in den folgenden Abschnitten erläutert.
 
 ## Modi
 
