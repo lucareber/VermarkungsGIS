@@ -2,7 +2,7 @@
 
 Verwaltungstool (WebGIS) für die Vermarkung der Grenzzeichen in der amtlichen Vermessung, eingeschlossen zurückgestellte Vermarkungen und Projektmutationen. Entwickelt innerhalb der Bachelorthesis (12/2023) mit dem Titel "Weniger Staub, mehr Daten - neue Prozesse in der amtlichen Vermessung" am [Institut Geomatik](https://www.fhnw.ch/de/die-fhnw/hochschulen/architektur-bau-geomatik/institute/institut-geomatik) der Hochschule für Architektur, Bau und Geomatik.
 
-Stand: 26.05.2023
+Stand: 04.06.2023
 
 ## Aufbau
 
@@ -16,11 +16,49 @@ Das WebGIS teilt sich in verschieden Modi, welche ihrerseits über zugeschnitten
 
 Hintergrundauswahl, Parzellensuche, Legende (jeweils angepasst), Massstabsbalken, Quellenangabe und Hilfestellung sind in allen Modi verfügbar. Die weiteren Funktionen der Modi werden in den folgenden Abschnitten erläutert.
 
+<p align="center">
+  <img src="/docs/screenshot_Start.PNG" alt="Funktionen WebGIS" style="height: auto; width:70%;"/>
+  <br>
+  <em>Abb. 1: Allgemeinde Steuerelemente des WebGIS</em>
+</p>
+
+>>#### Legende Abbildung:
+>>1. Moduswahl (angepasst an Modus)
+>>2. Legende (angepasst an Modus)
+>>3. Massstabsbalken
+>>4. Quellenangabe Hintergrund
+>>5. Hintergrundauswahlt (angepasst an Zoomstufe)
+>>6. Hilfestellung
+>>7. Parzellensuche
+>>8. Zoom
+
 ## Modi
 
 ### Übersicht
+Dieser Modus dient der Übersicht über die Aufträge, dabei können die Aufträge nach ihrem Status ein- und ausgeblendet werden. Zusätzlich steht eine Auftragssuche zur Verfügung. Beim Klick auf den ***Suchen***-Button werden alle Aufträge gesucht, welche mit der eingegebenen Zeichenfolge beginnen. Die gefundenen Aufträge werden anschliessend nach der Auftragsnummer aufsteigen aufgelistet, über das ***Lupen***-Symbol kann auf den entsprechenden Auftrag gezommt werden.
 
-:warning: TEXT
+<p align="center">
+  <img src="/docs/screenshot_Start.PNG" alt="Modus Übersicht WebGIS" style="height: auto; width:70%;"/>
+  <br>
+  <em>Abb. 2: Funktionen des WebGIS im Modus Übersicht</em>
+</p>
+
+>>#### Legende Abbildung:
+>>1. Layer ein- und ausblenden
+>>2. Zoom auf Auftrag
+>>3. Auftragssuche
+
+Beim Anklicken eines Objektes öffnet sich eine Popup, welches alle Informationen über das Objekt anzeigt. Mit einem Klick auf das ***Zahnrad***-Symbol können die Werte verändert werden. Ein Speichern der Änderungen über den ***Speichern***-Button ist zwingend notwendig, ansonsten gehen die Änderungen verloren.
+
+<p align="center">
+  <img src="/docs/screenshot_Start.PNG" alt="Modus Übersicht WebGIS" style="height: auto; width:70%;"/>
+  <br>
+  <em>Abb. 3: Funktionen (Auftrags-) Popup im Modus Übersicht</em>
+</p>
+
+>>#### Legende Abbildung:
+>>1. Objektinformationen bearbeiten
+>>2. Popup schliessen 
 
 ### Erfassung
 
