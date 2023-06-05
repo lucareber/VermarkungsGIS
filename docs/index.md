@@ -37,6 +37,8 @@ Hintergrundauswahl, Parzellensuche, Legende (jeweils angepasst), Massstabsbalken
 ### Übersicht
 Dieser Modus dient der Übersicht über die Aufträge, dabei können die Aufträge nach ihrem Status ein- und ausgeblendet werden. Zusätzlich steht eine Auftragssuche zur Verfügung. Beim Klick auf den ***Suchen***-Button werden alle Aufträge gesucht, welche mit der eingegebenen Zeichenfolge beginnen. Die gefundenen Aufträge werden anschliessend nach der Auftragsnummer aufsteigen aufgelistet, über das ***Lupen***-Symbol kann auf den entsprechenden Auftrag gezommt werden.
 
+![Drag Racing](screenshot_Uebersicht_edit.png)
+
 <p align="center">
   <img src="screenshot_Uebersicht_edit.png" alt="Modus Übersicht WebGIS" style="height: auto; width:70%;"/>
   <br>
