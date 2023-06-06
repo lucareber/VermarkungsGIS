@@ -6,7 +6,7 @@ Stand: 06.06.2023
 
 
 
-
+<br><br>
 ## Aufbau
 
 Das WebGIS teilt sich in verschieden Modi, welche ihrerseits über zugeschnittene Darstellungen und Funktionen verfügen. Folgende sechs Modi wurden realisiert:
@@ -37,7 +37,7 @@ Hintergrundauswahl, Parzellensuche, Legende (jeweils angepasst), Massstabsbalken
 
 
 
-
+<br><br>
 ## Modi
 
 
@@ -72,7 +72,7 @@ Beim Anklicken eines Objektes öffnet sich eine Popup, welches alle Informatione
 
 
 
-
+<br><br>
 ### Erfassung
 ---
 Innerhalb von diesem Modus können Aufträge und die dazugehörigen Punkte erfasst werden. Zusätzlich werden alle Aufträge mit dem Status *erfasst* dem Erfassungsdatum nach absteigend aufgelistet. Die Auflistung kann mit entsprechender Eingabe gefiltert werden. Punkte können nur innerhalb von bestehenden Auftragsflächen erfasst werden.
@@ -131,7 +131,7 @@ Die leicht veränderte Oberfläche während der Geometriebearbeitung bietet eine
 
 
 
-
+<br><br>
 ### Vermarkung
 ---
 Dieser Modus dient dem Feldpersonal. Wie bereits im vorangegangenen Modus werden alle relevanten Aufträge (Status = *bereit für Vermarkung*) aufgelistet. Die Auflistung ist nach der Fälligkeit sortiert. Nebst dem Zoom auf den Auftrag beinhaltet ein Auftrag neu auch die Möglichkeit, ihn in die Materialberechnung einzubeziehen oder seinen Standort auf Google Maps zu öffnen. Die Materialberechnung dient dem Beladen des Feldfahrzeuges und berücksichtigt alle aktivierten Aufträge (unter Berücksichtigung der bereits gesetzten Zeichen). Ist die Vermarkung eines Punktes erstellt kann das definitive Vermarkungszeichen gesetzt werden, zusätzlich lässt sich eine Kontrolle erfassen. Erst wenn alle Punkte vermarkt sind, kann auch der Auftrag mit dem ***Vermarkung abschliessen***-Button abgeschlossen werden.  
@@ -170,7 +170,7 @@ Kontollmasse können über den Funktionsbutton ***Kontrollmass erfassen*** direk
 
 
 
-
+<br><br>
 ### Erledigt
 ---
 Dieser Modus dient der Kontrolle der vermarkten Aufträge. Einerseits können bereits erstellte Kontrollen überprüft und vervollständigt werden, andererseits lassen sich Kontrollen organisieren. Sobald allen Punkte über eine vollständige Kontrolle verfügen, kann der Auftrag über den ***Auftrag archivieren***-Button archiviert werden. Auch in diesem Modus kann über die nach der Auftragsnummer sortierte Auflistung der Aufträge auf den Auftrag gezoomt werden. Unvollständige Kontrollmasse lassen sich vervollständigen, zwingend für Auftragsarchivierung. Vor der Archivierung sollte zwingend das definitive Grenzzeichen in der Datenbank der amtlichen Vermessung abgeglichen werden.
@@ -189,7 +189,7 @@ Dieser Modus dient der Kontrolle der vermarkten Aufträge. Einerseits können be
 
 
 
-
+<br><br>
 ### VZ / PM
 ---
 Innerhalb von diesem Modus werden zurückgestellten Vermarkungen und Projektmutationen verwaltet. Je nach Interesse ist es möglich Layer ein- und auszublenden. Die Auflistung der Aufträge ist nach der Anzahl Tage seit der Erfassung (Rückstellung) sortiert. Wie bereits in den vorherigen Modi, kann die Auflistung gefiltert werden. Sobald ein Bauprojekt realisiert wurde und die entsprechenden Vorbereitungen auf dem Feld getätigt wurden, kann der Auftrag über den ***Freigeben***-Button für die Vermarkung freigegeben werden.
@@ -210,7 +210,7 @@ Innerhalb von diesem Modus werden zurückgestellten Vermarkungen und Projektmuta
 
 
 
-
+<br><br>
 ### Archiv
 ---
 Dieser Modus dient der Archivierung der Aufträge. Ein Löschen aller Aufträge mit einem Vermarkungsdatum älter als ein Jahr ist eingebaut (temporäre Lösung). Zudem ist eine Auftragssuche integriert, für das Auffinden eines Auftrages ist die vollständige Nummer einzugeben. Bei erfolgreicher Suche wird automatisch auf den Auftrag gezoomt.
@@ -228,5 +228,6 @@ Dieser Modus dient der Archivierung der Aufträge. Ein Löschen aller Aufträge 
 
 
 
+<br><br>
 ---
 GitHub Repository: [https://github.com/lucareber/VermarkungsGIS](https://github.com/lucareber/VermarkungsGIS)
