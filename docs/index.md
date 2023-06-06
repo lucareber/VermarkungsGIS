@@ -2,8 +2,9 @@
 
 Verwaltungstool (WebGIS) für die Vermarkung der Grenzzeichen in der amtlichen Vermessung, eingeschlossen zurückgestellte Vermarkungen und Projektmutationen. Entwickelt innerhalb der Bachelorthesis (12/2023) mit dem Titel "Weniger Staub, mehr Daten - neue Prozesse in der amtlichen Vermessung" am [Institut Geomatik](https://www.fhnw.ch/de/die-fhnw/hochschulen/architektur-bau-geomatik/institute/institut-geomatik) der Hochschule für Architektur, Bau und Geomatik.
 
-Stand: 04.06.2023
+Stand: 06.06.2023
 
+</br></br>
 ## Aufbau
 
 Das WebGIS teilt sich in verschieden Modi, welche ihrerseits über zugeschnittene Darstellungen und Funktionen verfügen. Folgende sechs Modi wurden realisiert:
