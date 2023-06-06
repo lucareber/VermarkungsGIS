@@ -32,6 +32,7 @@ Hintergrundauswahl, Parzellensuche, Legende (jeweils angepasst), Massstabsbalken
 >>7. Parzellensuche
 >>8. Zoom
 
+</br></br>
 ## Modi
 
 </br></br>
