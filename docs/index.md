@@ -173,18 +173,60 @@ Kontollmasse können über den Funktionsbutton ***Kontrollmass erfassen*** direk
 
 ### Erledigt
 ---
-:warning: TEXT
+Dieser Modus dient der Kontrolle der vermarkten Aufträge. Einerseits können bereits erstellte Kontrollen überprüft und vervollständigt werden, andererseits lassen sich Kontrollen organisieren. Sobald allen Punkte über eine vollständige Kontrolle verfügen, kann der Auftrag über den ***Auftrag archivieren***-Button archiviert werden. Auch in diesem Modus kann über die nach der Auftragsnummer sortierte Auflistung der Aufträge auf den Auftrag gezoomt werden. Unvollständige Kontrollmasse lassen sich vervollständigen, zwingend für Auftragsarchivierung. Vor der Archivierung sollte zwingend das definitive Grenzzeichen in der Datenbank der amtlichen Vermessung abgeglichen werden.
+
+<p align="center">
+  <img src="screenshot_Vermarkung_edit3.png" alt="Modus Erledigt WebGIS" style="height: auto; width:70%;"/>
+  <br>
+  <em>Abb. 11: Funktionen des WebGIS im Modus Erfassung.</em>
+</p>
+
+>>#### Legende Abbildung:
+>>1. Objektinformationen bearbeiten
+>>2. Änderungen speichern
+>>3. Aufträge filtern
+>>4. Zoom auf Auftrag
 
 
 
 
 ### VZ / PM
 ---
-:warning: TEXT
+Innerhalb von diesem Modus werden zurückgestellten Vermarkungen und Projektmutationen verwaltet. Je nach Interesse ist es möglich Layer ein- und auszublenden. Die Auflistung der Aufträge ist nach der Anzahl Tage seit der Erfassung (Rückstellung) sortiert. Wie bereits in den vorherigen Modi, kann die Auflistung gefiltert werden. Sobald ein Bauprojekt realisiert wurde und die entsprechenden Vorbereitungen auf dem Feld getätigt wurden, kann der Auftrag über den ***Freigeben***-Button für die Vermarkung freigegeben werden.
+
+<p align="center">
+  <img src="screenshot_Vermarkung_edit3.png" alt="Modus VZ / PM WebGIS" style="height: auto; width:70%;"/>
+  <br>
+  <em>Abb. 12: Funktionen des WebGIS im Modus VZ / PM.</em>
+</p>
+
+>>#### Legende Abbildung:
+>>1. Layer ein- und ausblenden
+>>2. Objektinformationen bearbeiten
+>>3. Änderungen speichern
+>>4. Auftrag zur Vermarkung freigeben
+>>5. Aufträge filtern
+>>6. Zoom auf Auftrag
 
 
 
 
 ### Archiv
 ---
-:warning: TEXT
+Dieser Modus dient der Archivierung der Aufträge. Ein Löschen aller Aufträge mit einem Vermarkungsdatum älter als ein Jahr ist eingebaut (temporäre Lösung). Zudem ist eine Auftragssuche integriert, für das Auffinden eines Auftrages ist die vollständige Nummer einzugeben. Bei erfolgreicher Suche wird automatisch auf den Auftrag gezoomt.
+
+<p align="center">
+  <img src="screenshot_Vermarkung_edit3.png" alt="Modus Archiv WebGIS" style="height: auto; width:70%;"/>
+  <br>
+  <em>Abb. 12: Funktionen des WebGIS im Modus Archiv.</em>
+</p>
+
+>>#### Legende Abbildung:
+>>1. Objektinformationen bearbeiten
+>>2. Auftragssuche
+>>3. Aufträge automatisiert löschen
+
+
+
+---
+GitHub Repository: [https://github.com/lucareber/VermarkungsGIS](https://github.com/lucareber/VermarkungsGIS)
