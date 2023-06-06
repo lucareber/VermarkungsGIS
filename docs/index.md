@@ -4,7 +4,9 @@ Verwaltungstool (WebGIS) für die Vermarkung der Grenzzeichen in der amtlichen V
 
 Stand: 06.06.2023
 
-</br></br>
+
+
+
 ## Aufbau
 
 Das WebGIS teilt sich in verschieden Modi, welche ihrerseits über zugeschnittene Darstellungen und Funktionen verfügen. Folgende sechs Modi wurden realisiert:
@@ -33,10 +35,14 @@ Hintergrundauswahl, Parzellensuche, Legende (jeweils angepasst), Massstabsbalken
 >>7. Parzellensuche
 >>8. Zoom
 
-</br></br>
+
+
+
 ## Modi
 
-</br></br>
+
+
+
 ### Übersicht
 ---
 Dieser Modus dient der Übersicht über die Aufträge, dabei können die Aufträge nach ihrem Status ein- und ausgeblendet werden. Zusätzlich steht eine Auftragssuche zur Verfügung. Beim Klick auf den ***Suchen***-Button werden alle Aufträge gesucht, welche mit der eingegebenen Zeichenfolge beginnen. Die gefundenen Aufträge werden anschliessend nach der Auftragsnummer aufsteigen aufgelistet, über das ***Lupen***-Symbol kann auf den entsprechenden Auftrag gezommt werden.
@@ -64,7 +70,9 @@ Beim Anklicken eines Objektes öffnet sich eine Popup, welches alle Informatione
 >>1. Objektinformationen bearbeiten
 >>2. Popup schliessen 
 
-</br></br>
+
+
+
 ### Erfassung
 ---
 Innerhalb von diesem Modus können Aufträge und die dazugehörigen Punkte erfasst werden. Zusätzlich werden alle Aufträge mit dem Status *erfasst* dem Erfassungsdatum nach absteigend aufgelistet. Die Auflistung kann mit entsprechender Eingabe gefiltert werden. Punkte können nur innerhalb von bestehenden Auftragsflächen erfasst werden.
@@ -121,7 +129,9 @@ Die leicht veränderte Oberfläche während der Geometriebearbeitung bietet eine
 >>1. Geometriebearbeitung beenden (automatische Speicherung)
 >>2. Kurzanleitung
 
-</br></br>
+
+
+
 ### Vermarkung
 ---
 Dieser Modus dient dem Feldpersonal. Wie bereits im vorangegangenen Modus werden alle relevanten Aufträge (Status = *bereit für Vermarkung*) aufgelistet. Die Auflistung ist nach der Fälligkeit sortiert. Nebst dem Zoom auf den Auftrag beinhaltet ein Auftrag neu auch die Möglichkeit, ihn in die Materialberechnung einzubeziehen oder seinen Standort auf Google Maps zu öffnen. Die Materialberechnung dient dem Beladen des Feldfahrzeuges und berücksichtigt alle aktivierten Aufträge (unter Berücksichtigung der bereits gesetzten Zeichen). Ist die Vermarkung eines Punktes erstellt kann das definitive Vermarkungszeichen gesetzt werden, zusätzlich lässt sich eine Kontrolle erfassen. Erst wenn alle Punkte vermarkt sind, kann auch der Auftrag mit dem ***Vermarkung abschliessen***-Button abgeschlossen werden.  
@@ -158,17 +168,23 @@ Kontollmasse können über den Funktionsbutton ***Kontrollmass erfassen*** direk
 >>#### Legende Abbildung:
 >>1. Erfasstes Kontrollmass speichern
 
-</br></br>
+
+
+
 ### Erledigt
 ---
 :warning: TEXT
 
-</br></br>
+
+
+
 ### VZ / PM
 ---
 :warning: TEXT
 
-</br></br>
+
+
+
 ### Archiv
 ---
 :warning: TEXT
