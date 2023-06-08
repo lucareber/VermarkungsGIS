@@ -17,3 +17,12 @@ Als Grundlage dient eine PostgreSQL-Datenbank mit der räumlichen Erweiterung Po
   <br>
   <em>Abb. 2: Organisation der Vermarkungsverwaltung in Form eines Mindmap.</em>
 </p>
+
+## Installation
+
+### Speicherung
+
+### Veröffentlichung
+
+### Visualisierung
+
