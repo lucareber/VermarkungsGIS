@@ -10,4 +10,10 @@ Innerhalb der Bachelorthesis (12/2023) mit dem Titel "Weniger Staub, mehr Daten 
 
 ## Aufbau 
 
-Als Grundlage dient eine PostgreSQL-Datenbank mit der räumlichen Erweiterung PostGIS.
+Als Grundlage dient eine PostgreSQL-Datenbank mit der räumlichen Erweiterung PostGIS. Diese wird mit dem GeoServer publiziert und anschliessend in einem WebGIS visualisiert. 
+
+<p align="center">
+  <img src="/docs/screenshot_Start.PNG" alt="Startansicht WebGIS" style="height: auto; width:70%;"/>
+  <br>
+  <em>Abb. 2: Organisation der Vermarkungsverwaltung.</em>
+</p>
