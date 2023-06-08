@@ -19,6 +19,11 @@ Als Grundlage dient eine PostgreSQL-Datenbank mit der räumlichen Erweiterung Po
 </p>
 
 ## Installation
+Für die Installation werden die folgenden Elemente vorausgesetzt:
+* [PostgreSQL](https://www.postgresql.org/docs/current/tutorial-install.html)
+* [PgAdmin 4](https://www.pgadmin.org/download/)
+* IDE wie [Visual Studio Code](https://code.visualstudio.com/) 
+* Node.js und npm [https://docs.npmjs.com/downloading-and-installing-node-js-and-npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ### 1. Speicherung
 
