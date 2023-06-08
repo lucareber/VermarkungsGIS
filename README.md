@@ -20,9 +20,9 @@ Als Grundlage dient eine PostgreSQL-Datenbank mit der räumlichen Erweiterung Po
 
 ## Installation
 
-### Speicherung
+### 1. Speicherung
 
-### Veröffentlichung
+### 2. Veröffentlichung
 
-### Visualisierung
+### 3. Visualisierung
 
