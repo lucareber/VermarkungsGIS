@@ -3,7 +3,7 @@
 Innerhalb der Bachelorthesis (12/2023) mit dem Titel "Weniger Staub, mehr Daten - neue Prozesse in der amtlichen Vermessung" an der [Hochschule Architektur, Bau und Geomatik der FHNW](https://www.fhnw.ch/de/die-fhnw/hochschulen/architektur-bau-geomatik) wurde ein WebGIS zur Verwaltung der Vermarkung der Grenzzeichen der amtlichen Vermessung geschaffen. Zugeschnitten auf die [RSW AG](https://www.rswag.ch/) (Projektpartner) kann der bis anhing analoge Prozess nun vollständig digital abgewickelt werden. Nebst der definitiven Erstellung der Grenzzeichen können sowohl zurückgestellte Vermarkungen wie auch Projektmutationen verwaltet werden. Eine analoge Aufbewahrung der Akten wird somit überflüssig.  
 
 <p align="center">
-  <img src="/docs/screenshot_Start.PNG" alt="Startansicht WebGIS" style="height: auto; width:70%;"/>
+  <img src="/docs/animationWebGIS.gif" alt="WebGIS" style="height: auto; width:100%;"/>
   <br>
   <em>Abb. 1: Ansicht beim Aufstarten des WebGIS</em>
 </p>
@@ -56,7 +56,28 @@ var server_pnt_layer = 'vermarkung_grenzpunkte';
 // Layername Kontrollmasse
 var server_chk_layer = 'vermarkung_kontrollmasse';
 ```
+Anschliessend kann der GeoServer über die bei der Installation mitgelieferte Datei ***startup.bat*** gestartet werden. Da die Zeitzoneninformationen nicht von Interesse sind muss der Abschnitt *:run* in der Datei angepasst werden: 
+
+```bat
+:run
+  cd "%GEOSERVER_HOME%"
+  echo Please wait while loading GeoServer...
+  echo.
+  "%RUN_JAVA%" %JAVA_OPTS% -DGEOSERVER_DATA_DIR="%GEOSERVER_DATA_DIR%" -Djava.awt.headless=true -DSTOP.PORT=8079  -Dorg.geotools.localDateTimeHandling=true -DSTOP.KEY=geoserver -jar start.jar
+  cd bin
+goto end
+```
 
 ### 3. Visualisierung
+Ist der GeoServer eingerichtet und aufgestartet, kann mit der Eingabeaufforderung in den Ordner ***VermarkungsGIS*** navigiert werden. Nach der Installation der nötigen Module, kann die Applikation gestartet werden und über den angezeigten Link geöffnet werden.
 
+```shell
+# Navigation in Ordner
+cd VermarkungsGIS
 
+# Installieren der Module (Ausfuehrung nur einmalig noetig)
+npm install
+
+# Projekt starten
+npm start
+```
