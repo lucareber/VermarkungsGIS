@@ -23,8 +23,34 @@ Für die Installation werden die folgenden Elemente vorausgesetzt:
 * [PostgreSQL](https://www.postgresql.org/docs/current/tutorial-install.html) mit der Erweiterung [PostGIS](https://postgis.net/)
 * [PgAdmin 4](https://www.pgadmin.org/download/)
 * [GeoServer](https://geoserver.org/download/)
-* IDE (Integrierte Entwicklungsumgebung) wie beispielsweise [Visual Studio Code](https://code.visualstudio.com/) 
 * Node.js und npm [https://docs.npmjs.com/downloading-and-installing-node-js-and-npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+Getestet mit den folgenden Versionen:
+
+<table width=100%>
+  <tr width="100%">
+      <td>PostgreSQL</td>
+      <td>13.2</td>
+  </tr>
+  <tr width="100%">
+      <td>PostGIS</td>
+      <td>3.3.2</td>
+  </tr>
+  <tr width="100%">
+      <td>PgAdmin 4</td>
+      <td>5.0</td>
+  </tr>
+  <tr width="100%">
+      <td>Geoserver</td>
+      <td>2.22.2</td>
+  </tr>
+   <tr width="100%">
+      <td>Node.js</td>
+      <td>18.5.0</td>
+  </tr>
+</table>
+
+
 
 ### 1. Speicherung
 Mit der Datei ***create_database.sql*** lässt sich in PgAdmin 4 einfach eine Datenbank mit den nötigen Tabellen und Beziehungen erstellen.
@@ -38,7 +64,7 @@ Die Erstellte Datenbank kann anschliessend mit GeoServer veröffentlicht werden.
 * **Layer** (Grenzpunkte)**:** vermarkung_grenzpunkte
 * **Layer** (Kontrollmasse)**:** vermarkung_kontrollmasse
 
-Die verwendeten Namen und die so entstandenen Verbindungen müssen anschliessend in der JavaScript-Datei ***internal_services.js*** angepasst werden (z.B. mit der installierten IDE).
+Die verwendeten Namen und die so entstandenen Verbindungen müssen anschliessend in der JavaScript-Datei ***internal_services.js*** angepasst werden.
 
 ```js
 // Serververbindung
