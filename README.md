@@ -5,7 +5,7 @@ Innerhalb der Bachelorthesis (12/2023) mit dem Titel "Weniger Staub, mehr Daten 
 <p align="center">
   <img src="/docs/animationWebGIS.gif" alt="WebGIS" style="height: auto; width:100%;"/>
   <br>
-  <em>Abb. 1: Ansicht beim Aufstarten des WebGIS</em>
+  <em>Abb. 1: Animation WebGIS</em>
 </p>
 
 ## Aufbau 
@@ -81,3 +81,6 @@ npm install
 # Projekt starten
 npm start
 ```
+
+---
+Stand: 09.06.2023
