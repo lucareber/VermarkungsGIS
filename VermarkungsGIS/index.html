@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <!--Titel-->
+    <title>VermarkungsGIS</title>
+    <link rel="stylesheet" href="node_modules/ol/ol.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!--Ueberlagerung (fuer Materialreport)-->
+    <div class="overlay" id="overlay">
+      <p><b>Material</b></p>
+      <!--Materialzusammenstellung-->
+      <div id="overlay_text"></div>
+      <!--Ueberlagerung schliessen (Button)-->
+      <div id="overlay_close_div">
+        <button id="overlay_close">Schliessen</button>
+      </div>
+    </div>
+    <!--Kopfteil (Titel und Parzellensuche)-->
+    <div id="wrapper">
+      <div id="parent">
+          <div class="gisTitle">VermarkungsGIS</div>
+          <div class="parzSearchBox">
+            <div class="parzSearch">
+              <!--Text Gemeinde:-->
+              <label class="gisText" id="gemeinde">Gemeinde:</label>
+              <!--Dropdown Gemeindewahl-->
+              <select id="parzSearchGmd" name="gemeinde"></select>
+              <!--Text Parzelle:-->
+              <label class="gisText" id="parzelle">Parzelle:</label>
+              <!--Eingabefeld Parzellennummer-->
+              <input id="parzSearchNum" type="number" class="skip-char"></input>
+              <!--Suche starten (Button)-->
+              <button id="parzSearchButton" class="parzSearchButtonHov parzSearchButton" type="button">
+                Suchen
+              </button>
+            </div>
+          </div>
+      </div>
+      <div id="help">
+        <a href=https://lucareber.github.io/VermarkungsGIS/ target="_blank">
+          <img class="help_icon" src="./img/circle-info-solid.svg" alt="help">
+          </img>
+        </a>
+      </div>
+    </div>
+    <!--Hauptteil (Karte und Informationen)-->
+    <div class="view-container">
+      <!--Kartenansicht-->
+      <div id="map" class="map"></div>
+      <!--Popup (Informationen / Bearbeitung)-->
+      <div id="popup" class="ol-popup">
+        <!--Popup schliessen-->
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <!--Inhalt Popup-->
+        <div id="popup-content"></div>
+      </div>
+      <!--Informationen-->
+      <div id="rightsidediv">
+        <!--Auftragssuche oder Filterung-->
+        <div id="job_num_search">
+            <p style="margin-top: 0; margin-bottom: 1%;"><b>Auftragssuche</b> (Nummer):</p>
+            <!--Eingabefeld Auftragsnummer-->
+            <input type="text" id="searchJobNum"></input>
+            <!--Suche starten (Button)-->
+            <button id=butsearchJobNum>Suchen</button>
+        </div>
+        <!--Auflistung aller Auftraege-->
+        <div id="job_list" class="job_list" style="overflow-y: scroll;">
+          <div id="job_list-content"></div>
+        </div>
+        <!--Materialreport oder Auftraege loeschen (Archiv)-->
+        <div id="job_rpt_create"></div>
+      </div>
+    </div>
+    <!--Skripts-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/elm-pep@1.0.6/dist/elm-pep.js"></script>
+    <script type="module" src="external_services.js"></script>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

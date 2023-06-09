@@ -1,0 +1,822 @@
+/*Import Openlayers-Style*/
+@import "node_modules/ol/ol.css";
+
+/*Initialisieren der Farbpalette fuer die Verwendung in der gesamten Darstellung.
+  Weitergabe der Farben an dei JavaScript-Files durch color_values.js".*/
+/*Quelle: W3Schools. (o. D.). CSS Variables - The var() Function. W3Schools.
+  URL: https://www.w3schools.com/css/css3_variables.asp
+  [Abgerufen: 07.04.2023]*/
+/*------------------------------------------------------------------------------------------------*/
+:root {
+  /*Hauptfarben*/
+  --color_background_1:rgb(126, 166, 224);        /*Primaerhintergrundfarbe, ausgewaehlte Optionen*/
+  --color_background_2:rgb(212, 225, 245);        /*Sekundaerhintergrundfarbe*/
+  --color_background_3:#ffffff;                   /*Teritaerehintergrundfarbe -> weiss*/
+  --color_border:#000000;                         /*Umrandungsfarbe*/
+  --color_font_general:#000000;                   /*Schriftfarbe*/
+  /*Farben Auftrag-Datenbank*/
+  --color_j_proj_line:rgba(176, 11, 98, 0.8);     /*Linienfarbe projektierte Auftraege*/
+  --color_j_proj_fill:rgba(247, 129, 191, 0.6);   /*Fuellfarbe projektierte Auftraege*/
+  --color_j_cre_line:rgba(113, 13, 14, 0.8);      /*Linienfarbe erfasste Auftraege*/
+  --color_j_cre_fill:rgba(228, 26, 28, 0.6);      /*Fuellfarbe erfasste Auftraege*/
+  --color_j_cre_vz_line:rgba(27, 63, 92, 0.8);    /*Linienfarbe erfasste Auftraege (VZ)*/
+  --color_j_cre_vz_fill:rgba(55, 126, 184, 0.6);  /*Fuellfarbe erfasste Auftraege (VZ)*/
+  --color_j_cre_pm_line:rgba(17, 120, 149, 0.8);  /*Linienfarbe erfasste Auftraege (PM)*/
+  --color_j_cre_pm_fill:rgba(97, 206, 237, 0.6);  /*Fuellfarbe erfasste Auftraege (PM)*/
+  --color_j_rdy_line:rgba(127, 63, 0, 0.8);       /*Linienfarbe Auftraege bereit fuer Vermarkung*/
+  --color_j_rdy_fill:rgba(255, 127, 0, 0.6);      /*Fuellfarbe Auftraege bereit fuer Vermarkung*/
+  --color_j_mk_line:rgba(38, 87, 37, 0.8);        /*Linienfarbe vermarkte Auftraege*/
+  --color_j_mk_fill:rgba(77, 175, 74, 0.6);       /*Fuellfarbe vermarkte Auftraege*/
+  --color_j_arc_line:rgba(76, 76, 76, 0.8);       /*Linienfarbe archivierte Auftraege*/
+  --color_j_arc_fill:rgba(153, 153, 153, 0.6);    /*Fuellfarbe vermarkte Auftraege*/
+  /*Farben Grenzpunkt-Datenbank*/
+  --color_p_cre_line:rgb(210, 210, 0);            /*Linienfarbe erfasste Punkte*/
+  --color_p_cre_fill:rgba(255, 255, 0, 1);        /*Fuellfarbe erfasste Punkte*/
+  --color_p_mk_line:rgb(210, 0, 210);             /*Linienfarbe vermarkte Punkte*/
+  --color_p_mk_fill:rgba(255, 0, 255, 1);         /*Fuellfarbe vermarkte Punkte*/
+  --color_p_ck_line:rgb(0, 210, 210);             /*Linienfarbe kontrollierte Punkte*/
+  --color_p_ck_fill:rgba(0, 255, 255, 1);         /*Fuellfarbe kontrollierte Punkte*/
+  /*Farben Kontrollmass-Datenbank*/
+  --color_c_all_cmpl: rgba(122, 1, 119, 1);       /*Linienfarbe vollstaendige Kontrollmasse*/
+  --color_c_all_incmpl: rgba(221, 52, 151, 1);    /*Linienfarbe unvollstaendige Kontrollmasse*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Hauptansicht*/
+/*------------------------------------------------------------------------------------------------*/
+html, body {
+  margin: 0.4%;                                   /*Abstand ausserhalb Element*/                                   
+  height: 98%;                                    /*Hoehe*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+  overflow: hidden;                               /*scrollen -> deaktivieren*/
+  color: var(--color_font_general);               /*Schriftfarbe*/
+}
+#map {                                            /*Kartenfenster*/
+  width: 75%;                                     /*Breite*/
+  height: 90%;                                    /*Hoehe*/
+  position: fixed;                                /*Positionierung*/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  font-family: Arial;                             /*Schriftfarbe*/
+  float: left;                                    /*Ausrichtung*/
+} 
+#rightsidediv{                                    /*Informationsanzeige rechts*/
+  width: 23%;                                     /*Breite*/
+  height: 90vh;                                   /*Hoehe*/
+  float: right;                                   /*Ausrichtung*/
+}
+#job_num_search{                                  /*Suche nach Auftragsnummer*/
+  width: 100%;                                    /*Breite*/
+  height: 5vh;                                    /*Hoehe*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  font-family: Arial;                             /*Schriftart*/
+  padding: 1vh;                                   /*Abstand innerhalb Element*/
+}
+#job_list{                                        /*Auflistung Auftraege*/
+  width: 100%;                                    /*Breite*/
+  height: 83vh;                                   /*Hoehe*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  font-family: Arial;                             /*Schriftart*/
+}
+.job_rpt_create{                                  /*Materialreport erstellen
+                                                    Auftraege loeschen*/
+  width: auto;                                    /*Breite*/
+  height: auto;                                   /*Hoehe*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  font-family: Arial;                             /*Schriftart*/
+  padding: 1vh;                                   /*Abstand innerhalb Element*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Kopfteil (Titel + Parzellensuche)*/
+/*------------------------------------------------------------------------------------------------*/
+#wrapper {                                        /*Kopfteil*/
+  font-family: Arial;                             /*Schriftart*/
+  width: 100%;                                    /*Breite*/
+  height: 5%;                                     /*Hoehe*/
+  padding-bottom: 0.5%;                           /*Abstand innerhalb Element unten*/
+}
+#parent {                                         /*Sammelzelle*/
+  display: inline-block;                          /*Darstellungsart*/     
+  width: 76%;                                     /*Breite*/
+  height: 100%;                                   /*Hoehe*/
+  overflow: hidden;                               /*scrollen -> deaktivieren*/
+}
+.gisTitle {                                       /*Titel*/
+  font-size: 150%;                                /*Schriftgroesse*/
+  font-weight: 800;                               /*Schriftdicke*/
+  float: left;                                    /*Ausrichtung*/
+  width: 30%;                                     /*Breite*/
+  height: 100%;                                   /*Hoehe*/
+  display: flex;                                  /*Darstellung*/
+  justify-content: left;                          /*Zwischenraum Inhalt*/
+  align-items: flex-end;                          /*Ausrichtung Inhalt*/
+}
+.gisText{                                         /*Text*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+}
+/*Parzellensuche*/
+.parzSearchBox{                                   /*Parzellensuche Sammelzelle*/
+  float: right;                                   /*Ausrichtung*/
+  display: flex;                                  /*Darstellung*/
+  width: 70%;                                     /*Breite*/
+  height: 100%;                                   /*Hoehe*/
+  justify-content: right;                         /*Zwischenraum Inhalt*/
+  align-items: flex-end;                          /*Ausrichtung Inhalt*/              
+}
+.parzSearch{                                      /*Parzellensuche Eingabeelemente*/
+  display: flex;                                  /*Darstellung*/
+  width: 100%;                                    /*Breite*/
+  height: auto;                                   /*Hoehe*/
+  align-items: center;                            /*Ausrichtung Inhalt*/
+  justify-content: right;                         /*Zwischenraum Inhalt*/
+}
+#parzSearchGmd{                                   /*Eingabefeld Gemeinde (Dropdown)*/          
+  width: 32%;                                     /*Breite*/
+  font-family: Arial;                             /*Schriftart*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  cursor: pointer;                                /*Mauszeiger*/
+  margin-left: 1%;                                /*Abstand ausserhalb Element links*/
+  margin-right: 1%;                               /*Abstand ausserhalb Element rechts*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umradnung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}
+#parzSearchNum{                                   /*Eingabefeld Parzellennummer)*/
+  width: 12%;                                     /*Breite*/
+  font-family: Arial;                             /*Schriftart*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  margin-left: 1%;                                /*Abstand ausserhalb Element links*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}
+.parzSearchButton{                                /*Button Parzellensuche*/
+  font-family: Arial;                             /*Schriftart*/
+  width: 10%;                                     /*Breite*/
+  margin-left: 1%;                                /*Abstand vom Kartenrand links*/
+  text-align: center;                             /*Textausrichtung*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  cursor: pointer;                                /*Mauszeiger*/  
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umradnung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}
+.parzSearchButtonHov:hover{                       /*Ueberfahren Button Parzellensuche*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+}
+#help{                                            /*Hilfe*/
+  display: block;                                 /*Darstellung*/
+  float: right;                                   /*Ausrichtung*/
+}
+.help_icon{                                       /*Symbolysierung Hilfesymbol*/
+  height: 3.5vh;                                  /*Hoehe*/
+  vertical-align: middle;                         /*Vertikale Ausrichtung*/
+}
+.help_icon:hover {                          /*Ueberfahren Hilfesymbol*/
+  /*SVG einfaerben -> Hellblau (Hintergrund 2)*/
+  /*Quelle: Sonntag. Barrett. (15.07.2022). 
+    CSS filter generator to convert from black to target hex color. CodePen.
+    URL: https://codepen.io/sosuke/pen/Pjoqqp [Abgerufen: 04.05.2023]*/
+  filter: invert(92%) sepia(93%) saturate(6436%) hue-rotate(179deg) brightness(97%) contrast(97%);
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Kartenelemente (von Openlayers uebernommen und angepasst*/
+/*------------------------------------------------------------------------------------------------*/
+.ol-scale-line {                                  /*Massstabsanzeige*/                     
+  position: absolute;                             /*Positionierung*/
+  width: auto;                                    /*Breite*/
+  bottom: 1%;                                     /*Abstand vom Kartenrand unten*/
+  left: 22%;                                      /*Abstand vom Kartenrand links*/
+  background: var(--color_background_2);          /*Hintergrund*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+}
+.ol-scale-line-inner {                            /*Massstabsanzeige Elemente*/
+  border: 1px solid var(--color_border);          /*Umrandung*/
+  border-top: none;                               /*Umrandung oben*/
+  color: var(--color_font_general);               /*Schriftfarbe*/
+  text-align: center;                             /*Textausrichtung*/
+  margin: 1px;                                    /*Abstand ausserhalb Element*/
+  will-change: contents, width;                   /*Voraussichtliche Veraenderungen*/          
+  font-size: 70%;                                 /*Schriftgroesse*/
+}
+.ol-zoom {                                        /*Zoom*/
+  top: 1%;                                        /*Abstand vom Kartenrand oben*/
+  right: 1%;                                      /*Abstand vom Kartenrand rechts*/
+  left: auto;                                     /*Abstand vom Kartenrand links*/
+  background: none;                               /*Hintergrund*/
+}
+.ol-zoom .ol-zoom-in, .ol-zoom .ol-zoom-out{      /*Zoom-Buttons*/
+  border-radius: 0.3vh;                           /*Radius Umradnung*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  color: var(--color_font_general);               /*Schriftfarbe*/
+}
+.ol-zoom .ol-zoom-in:hover, .ol-zoom .ol-zoom-out:hover{  /*Ueberfahren Zoom-Buttons*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+}
+.ol-attribution a {                               /*Quellenangabe Links*/
+  margin: 1px;                                    /*Abstand ausserhalb Element*/
+  color: rgb(49,130,189);                         /*Schriftfarbe*/
+  text-decoration: underline;                     /*Schriftzusatz*/
+  text-decoration-color: transparent;             /*Farbe Schriftzusatz*/
+  transition: .3s;                                /*Veraenderungszeit*/
+}
+.ol-attribution a:hover {                         /*Ueberfahren Quellenangabe Links*/
+  text-decoration-color: rgb(49,130,189);         /*Farbe Schriftzusatz*/
+  color: rgb(49,130,189);                         /*Schriftfarbe*/
+}
+.ol-attribution ul {                              /*Quellenangabe Text*/
+  margin: 1px;                                    /*Abstand ausserhalb Element*/
+  padding: 1px .5em;                              /*Abstand innerhalb Element*/
+  color: var(--color_font_general);               /*Schriftfarbe*/
+  text-shadow: none;                              /*Textschatten*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+}
+.ol-attribution:not(.ol-collapsed) {              /*Quellenangabe - nicht zusammengeklappt*/
+  background: var(--color_background_2);          /*Hintergrund*/
+}
+.ol-attribution.ol-uncollapsible {                /*Quellenangabe*/
+  position: absolute;                             /*Positionierung*/
+  bottom: 1%;                                     /*Abstand vom Kartenrand unten*/
+  right: 31.3%;                                   /*Abstand vom Kartenrand rechts*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Buttons Moduswahl*/
+/*------------------------------------------------------------------------------------------------*/
+/*allgemeiner Style*/
+.modebutton {                                     /*Steuerungs-Button*/
+  left: 1%;                                       /*Abstand vom Kartenrand links*/
+  background: none;                               /*Hintergrund*/
+  height: 5%;                                     /*Hoehe*/
+  width: 20%                                      /*Breite*/
+}
+.modebutton button{                               /*Buttons*/
+  text-align: left;                               /*Textausrichtung*/
+  padding-left: 2%;                               /*Abstand ausserhalb Element links*/
+  width: 100%;                                    /*Breite*/
+  height: 100%;                                   /*Hoehe*/
+  color: var(--color_font_general);               /*Schriftfarbe*/
+  background-color:var(--color_background_2);     /*Hintergrundfarbe*/
+  font-weight: 500;                               /*Schriftdicke*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  font-family: Arial;                             /*Schriftart*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+}
+.modebutton button:hover{                         /*Ueberfahren Button*/
+  background-color: var(--color_background_1) !important;  /*Hintergrundfarbe*/
+    /*!important schuetzt vor Ueberschreiben durch JavaScript*/
+    /*Quelle: Lawrence. John. (09.06.2012). Javascript style overriding CSS hover. stack overflow.
+      URL: https://stackoverflow.com/questions/10964729/javascript-style-overriding-css-hover
+      [Abgerufen: 23.04.2023]*/
+}
+/*einzelne Positionierung (vertikal)*/
+.overview{                                        /*Positionierung Uebersicht*/
+  top: 1%;                                        /*Abstand vom Kartenrand oben*/
+  width: 25%;                                     /*Breite*/
+}
+.capture{                                         /*Positionierung Erfassung*/
+  top: 30.3%;                                      /*Abstand vom Kartenrand oben*/
+}
+.marking{                                         /*Positionierung Vermarkung*/
+  top: 35.5%;                                     /*Abstand vom Kartenrand oben*/
+}
+.done{                                            /*Positionierung Erledigt*/
+  top: 40.7%;                                     /*Abstand vom Kartenrand oben*/
+}
+.markingwait{                                     /*Positionierung Vermarkung zurückgestellt*/
+  top: 45.9%;                                     /*Abstand vom Kartenrand oben*/
+}
+.archive{                                         /*Positionierung Archiv*/
+  top: 51.1%;                                       /*Abstand vom Kartenrand oben*/
+}
+/*Uebersicht als Startmodus (temporaer)*/
+#but_00_overview{                                 /*Kennzeichnung als gewaehlter Modus*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+  font-weight: 650;                               /*Schriftdicke*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Checkboxen fuer Layer Ein- und Ausblenden*/
+/*------------------------------------------------------------------------------------------------*/
+/*allgemeiner Style*/
+.modeckbox {                                      /*Checkbox-Felder*/
+  left: 2%;                                       /*Abstand vom Kartenrand links*/
+  background-color :var(--color_background_2);    /*Hintergrundfarbe*/
+  height: 3.8%;                                   /*Hoehe*/
+  width: 19%;                                     /*Breite*/
+  color: var(--color_font_general);               /*Textfarbe*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  font-weight: 500;                               /*Schriftdicke*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  font-family: Arial;                             /*Schriftart*/
+  align-items: center;                            /*Elementausrichzung*/
+  display: flex;                                  /*Positionierung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+}
+/*Modus VZ/PM*/
+/*einzelne Positionierung (vertikal)*/
+.markingwaitVZ{                                   /*Positionierung Checkbox VZ*/
+  top: 27.2%;                                     /*Abstand vom Kartenrand oben*/
+}
+.markingwaitPM{                                   /*Positionierung Checkbox PM*/  
+  top: 31.2%;                                     /*Abstand vom Kartenrand oben*/
+}
+/*Modus Uebersicht*/
+/*einzelne Positionierung (vertikal)*/
+.overviewCRE{                                     /*Positionierung Checkbox erstellte Auftraege*/
+  top: 6.4%;                                      /*Abstand vom Kartenrand oben*/
+}
+.overviewCREVZ{                                   /*Positionierung Checkbox erstellte Auftraege VZ*/
+  top: 10.4%;                                     /*Abstand vom Kartenrand oben*/
+}
+.overviewCREPM{                                   /*Positionierung Checkbox erstellte Auftraege PM*/
+  top: 14.4%;                                     /*Abstand vom Kartenrand oben*/
+}
+.overviewRDY{                                     /*Positionierung Checkbox bereit Vermarkung*/
+  top: 18.4%;                                     /*Abstand vom Kartenrand oben*/
+}
+.overviewMK{                                      /*Positionierung Checkbox Vermarkung erstellt*/
+  top: 22.4%;                                     /*Abstand vom Kartenrand oben*/
+}
+.overviewARC{                                     /*Positionierung Checkbox archivierte Auftraege*/
+  top: 26.4%;                                     /*Abstand vom Kartenrand oben*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Buttons Erstellung und Modifizierung*/
+/*------------------------------------------------------------------------------------------------*/
+/*allgemeiner Style*/
+.createbutton, .modifybutton{                     /*Steuerungs-Button*/
+  right: 1%;                                      /*Abstand vom Kartenrand links*/
+  background: none;                               /*Hintergrund*/
+  height: 5%;                                     /*Hoehe*/
+  width: 20%                                      /*Breite*/
+}
+.createbutton button, .modifybutton button{       /*Button*/
+  text-align: center;                             /*Textausrichtung*/
+  padding-left: 2%;                               /*Abstand ausserhalb Element links*/
+  width: 100%;                                    /*Breite*/
+  height: 100%;                                   /*Hoehe*/
+  color: var(--color_font_general);               /*Schriftfarbe*/
+  background-color:var(--color_background_2);     /*Hintergrundfarbe*/
+  font-weight: 500;                               /*Schriftdicke*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  font-family: Arial;                             /*Schriftart*/
+  border-radius: 0.3vh;                           /*Radius Umradnung*/
+}
+.createbutton button:hover, .modifybutton_hover button:hover{  /*Ueberfahren Button*/
+  background-color: var(--color_background_1) !important;  /*Hintergrundfarbe*/
+  /*!important schuetzt vor Ueberschreiben durch JavaScript*/
+  /*Quelle: Lawrence. John. (09.06.2012). Javascript style overriding CSS hover. stack overflow.
+    URL: https://stackoverflow.com/questions/10964729/javascript-style-overriding-css-hover
+    [Abgerufen: 23.04.2023]*/
+}
+/*einzelne Positionierung (vertikal)*/
+.job_but{                                         /*Positionierung Auftrag erstellen*/
+  bottom: 8.7%;                                   /*Abstand vom Kartenrand unten*/
+}
+.pnt_but{                                         /*Positionierung Punkt erstellen*/
+  bottom: 13.9%;                                  /*Abstand vom Kartenrand unten*/
+}
+.chk_but{                                         /*Positionierung Kontrollmasse erstellen*/
+  bottom: 8.7%;                                   /*Abstand vom Kartenrand unten*/
+}
+.mod_but{                                         /*Positionierung Auftrag/Punkt modifizieren*/
+  bottom: 8.7%;                                   /*Abstand vom Kartenrand unten*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Style der Buttons für die Hintergrundauswahl  anpassen*/
+/*------------------------------------------------------------------------------------------------*/
+/*allgemeiner Style*/
+.backgroundbutton{                                /*Steuerungs-Button*/
+  bottom: 1%;                                     /*Abstand vom Kartenrand unten*/
+  background: none;                               /*Hintergrund*/
+  height: 7.5%;                                   /*Hoehe*/
+  width: 9.9%                                     /*Breite*/
+}
+.backgroundbutton button{                         /*Button*/
+  text-align: center;                             /*Textausrichtung*/
+  padding-left: 2%;                               /*Abstand ausserhalb Element links*/
+  width: 100%;                                    /*Breite*/
+  height: 100%;                                   /*Hoehe*/
+  color: var(--color_font_general);               /*Schriftfarbe*/
+  background-color:var(--color_background_2);     /*Hintergrundfarbe*/
+  font-weight: 500;                               /*Schriftdicke*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  border-radius: 0.3vh;                           /*Radius Umradnung*/
+}
+.backgroundbutton button:hover{                   /*Ueberfahren Button*/
+  background-color: var(--color_background_1) !important;  /*Hintergrundfarbe*/
+  /*!important schuetzt vor Ueberschreiben durch JavaScript*/
+  /*Quelle: Lawrence. John. (09.06.2012). Javascript style overriding CSS hover. stack overflow.
+    URL: https://stackoverflow.com/questions/10964729/javascript-style-overriding-css-hover
+    [Abgerufen: 23.04.2023]*/
+}
+/*einzelne Positionierung (horizontal)*/
+.avcolor, .ovcolor{                               /*Positionierung AV bzw. Uebersicht farbig*/
+  right: 1%                                       /*Abstand vom Kartenrand rechts*/
+}
+.avgray, .ovgray{                                 /*Positionierung AV bzw. Uebersicht grau*/
+  right: 11.1%                                    /*Abstand vom Kartenrand rechts*/
+}
+.ortho{                                           /*Positionierung Orthophoto*/
+  right: 21.2%                                    /*Abstand vom Kartenrand rechts*/
+}
+/*AV farbig als Startmodus (temporaer)*/
+#but_01_background_av_color{                      /*Kennzeichnung als gewaehlter Modus*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+  font-weight: 650;                               /*Schriftdicke*/
+}
+.background_icon{                                 /*Symbol Hintergrundkarte*/
+  height: 3.5vh;                                  /*Hoehe*/
+  vertical-align: middle;                         /*Vertikale Ausrichtung*/
+}
+.modus_icon{                                      /*Symbol Layer Ein- & Ausklappen Uebersicht*/
+  height: 2vh;                                    /*Hoehe*/   
+  vertical-align: text-bottom;                    /*Vertikale Ausrichtung*/          
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Legende*/
+/*------------------------------------------------------------------------------------------------*/
+.legend{                                          /*Legende*/
+  bottom: 1%;                                     /*Abstand vom Kartenrand unten*/
+  left: 1%;                                       /*Abstand vom Kartenrand links*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  width: 20%;                                     /*Breite*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+}
+.legend table{                                    /*Legendeninhalt als Tabelle*/
+  padding: 2%;                                    /*Abstand innerhalb Element*/
+  width: 100%;                                    /*Breite*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  text-align: left;                               /*Textausrichtung*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Popups*/
+/*------------------------------------------------------------------------------------------------*/
+.ol-popup {                                       /*allgemeiner Style*/ 
+  font-size: 14px;                                /*Schriftgroesse*/
+  position: absolute;                             /*Positionierung*/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);          /*Schatten*/
+  padding: 15px;                                  /*Abstand innerhalb Element*/
+  border-radius: 10px;                            /*Radius Umrandung*/
+  border: 1px solid #cccccc;                      /*Umrandung*/
+  bottom: 12px;                                   /*Abstand unten vom Referenzpunkt (Klick)*/
+  left: -50px;                                    /*Abstand links vom Referenzpunkt (Klick)*/ 
+  width: 300px;                                   /*Breite*/
+}                                                 
+.ol-popup:after, .ol-popup:before {               /*Pseudoelemente fuer erweiterte 
+                                                    Formatierung (Pfeil zu Auswahl)*/
+  top: 100%;                                      /*Abstand oben von Popupumrandung*/
+  border: solid transparent;                      /*Umrandung*/
+  content: " ";                                   /*Inhalt*/
+  height: 0;                                      /*Hoehe*/
+  width: 0;                                       /*Breite*/
+  position: absolute;                             /*Positionierung*/
+  pointer-events: none;                           /*Events*/
+}                                                 
+.ol-popup:after {                                 /*oberhalbliegendes Element*/
+  border-top-color: var(--color_background_3);    /*Farbe*/
+  border-width: 10px;                             /*Umrandungsdicke*/
+  left: 48px;                                     /*Abstand links von Popupumrandung*/
+  margin-left: -10px;                             /*Abstanz ausserhalb Element*/
+}
+.ol-popup:before {                                /*unterhalbleigendes Element (Umrandung)*/
+  border-top-color: #cccccc;                      /*Farbe*/
+  border-width: 11px;                             /*Umrandungsdicke*/
+  left: 48px;                                     /*Abstand links von Popupumrandung*/
+  margin-left: -11px;                             /*Abstanz ausserhalb Element*/
+}                                                 
+.ol-popup-closer {                                /*Popup schliessen*/             
+  text-decoration: none;                          /*Schriftzusatz*/
+  position: absolute;                             /*Positionierung*/
+  top: 1vh;                                       /*Abstand oben von Popupumrandung*/
+  right: 1vh;                                     /*Abstand rechts von Popupumrandung*/
+}                                                 
+.ol-popup-closer:after {                          /*Schliesssymbol*/
+  /*SVG als Schliesssymbol*/
+  /*Quelle: Yoksel. (23.02.2023). Url encoder for SVG. GitHub.
+    URL: https://github.com/yoksel/url-encoder/
+    [Abgerufen: 08.05.2023]*/
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3E%3Cpath d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z'/%3E%3C/svg%3E");
+  display: block;                                 /*Darstellung*/
+  width: 3vh;                                     /*Breite*/
+  height: 3vh;                                    /*Hoehe*/  
+}                                                 
+.ol-popup-closer:hover {                          /*Ueberfahren Schliesssymbol*/
+  /*SVG einfaerben -> Rot*/
+  /*Quelle: Sonntag. Barrett. (15.07.2022). 
+    CSS filter generator to convert from black to target hex color. CodePen.
+    URL: https://codepen.io/sosuke/pen/Pjoqqp [Abgerufen: 04.05.2023]*/
+  filter: invert(12%) sepia(86%) saturate(5954%) hue-rotate(1deg) brightness(99%) contrast(117%);
+}
+/*Detailformatierung der einzelnen Popup-Elemente*/
+.popup_title{                                     /*Titel*/
+  font-weight: 900;                               /*Schriftdicke*/
+}                                                 
+.popup_table{                                     /*Tabelle*/
+  margin-top: 2%;                                 /*Abstand ausserhalb Element oben*/
+  margin-bottom: 2%;                              /*Abstand ausserhalb Element unten*/
+}                                                 
+.popup_col{                                       /*Tabellenspalten*/
+  padding: 2px;                                   /*Abstand innerhalb Element*/
+  height: 20px;                                   /*Hoehe*/
+  min-width: 85px;                                /*minimale Breite*/
+}                                                 
+.popup_input_num{                                 /*Zahleneingabe*/
+  height: 15px;                                   /*Hoehe*/
+  font-size: 14px;                                /*Schriftgroesse*/
+  font-family: Arial;                             /*Schriftart*/
+  width: 194px;                                   /*Breite*/
+  border-color: var(--color_background_1);        /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/  
+  border-width: 1px;                              /*Umrandungsdicke*/
+}
+.popup_select{                                    /*Dropdown*/
+  height: 19px;                                   /*Hoehe*/
+  font-size: 14px;                                /*Schriftgroesse*/
+  font-family: Arial;                             /*Schriftart*/
+  cursor: pointer;                                /*Mauszeiger*/
+  width: 200px;                                   /*Breite*/
+  border-color: var(--color_background_1);        /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}                                                 
+.popup_input_date{                                /*Datumseingabe*/
+  height: 17px;                                   /*Hoehe*/
+  font-size: 14px;                                /*Schriftgroesse*/
+  font-family: Arial;                             /*Schriftart*/
+  cursor: pointer;                                /*Mauszeiger*/
+  width: 197px;                                   /*Breite*/
+  border-color: var(--color_background_1);        /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}                                                 
+.popup_buttongroup{                               /*Sammelbox Buttons*/
+  display: flex;                                  /*Darstellung*/
+  justify-content: center;                        /*Zwischenraum Inhalt*/
+  width: 300px;                                   /*Breite*/
+  align-items: center;                            /*Ausrichtung Inhalt*/
+}                                                 
+.popup_button{                                    /*Button*/
+  height: 20px;                                   /*Hoehe*/
+  width: 100px;                                   /*Breite*/
+  font-size: 14px;                                /*Schriftgroesse*/
+  font-family: Arial;                             /*Schriftart*/
+  background-color:var(--color_background_2);     /*Hintergrundfarbe*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umradnungsdicke*/
+  margin-left: 12px;                              /*Abstand ausserhalb Element links*/
+  margin-right: 12px;                             /*Abstand innerhalb Element rechts*/
+}
+.popup_button:hover{                              /*Ueberfahren Button*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+}
+.popup_button_pic{                                /*Buttons mit Icons*/                               
+  color: var(--color_font_general);               /*Schriftfarbe*/
+  min-width: 3vw;                                 /*minimale Breite*/
+  height: 3vh;                                    /*Hoehe*/
+  margin-left: 20px;                              /*Abstand ausserhalb Element links*/
+  background-color:var(--color_background_2);     /*Hintergrundfarbe*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}
+.popup_button_pic:hover{                          /*Ueberfahren Button mit Icon*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+}
+.popup_icon{                                      /*Icon*/
+  height: 2vh;                                    /*Hoehe*/
+  vertical-align: middle;                         /*Vertikale Ausrichtung*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Auftragssuche + Auftragfilterung*/
+/*------------------------------------------------------------------------------------------------*/
+/*Auftragssuche*/
+#searchJobNum {                                   /*Eingabefeld Auftragsnummer*/
+  width: 58%;                                     /*Breite*/
+  border-color: var(--color_background_1);        /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umradnung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+  margin-right: 2%;                               /*Abstand ausserhalb Element rechts*/
+}
+#butsearchJobNum{                                 /*Button Auftragssuche*/
+  width: 33%;                                     /*Breite*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  border-color: var(--color_border);              /*Farbe Umradnung*/
+  border-radius: 0.3vh;                           /*Radius Umradnung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+  margin-right: 2%;                               /*Abstand ausserhalb Element rechts*/
+}
+#butsearchJobNum:hover{                           /*Ueberfahren Button Auftragssuche*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+}
+/*Auftragsfilterung*/
+#filterJobNum{                                    /*Eingabefeld Auftragsfilterung*/
+  width: 75%;                                     /*Breite*/
+  border-color: var(--color_background_1);        /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umradnung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}
+
+/*------------------------------------------------------------------------------------------------*/
+
+/*Auflistung Auftraege*/
+/*------------------------------------------------------------------------------------------------*/
+.singlejob-container{                             /*Feld mit Auftraegen*/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  margin: 2%;                                     /*Abstand ausserhalb Element*/
+  padding: 2%;                                    /*Abstand innerhalb Element*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+}
+#container_cre {                                  /*Auftragsdetails - Status: erstellt*/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  border-color: var(--color_j_cre_line);          /*Farbe Umradnung*/
+  border-width: 2%;                               /*Umrandungsdicke*/
+  border-style: dashed;                           /*Umrandungsart*/
+}
+#container_cre_vz {                               /*Auftragsdetails - Status: erstellt
+                                                    Vermarkung zurückgestellt*/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  border-color: var(--color_j_cre_vz_line);       /*Farbe Umrandung*/
+  border-width: 2%;                               /*Umrandungsdicke*/
+  border-style: dashed;                           /*Umrandungsart*/
+}
+#container_cre_pm {                               /*Auftragsdetails - Status: erstellt
+                                                    Abschluss Projektmutation*/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  border-color: var(--color_j_cre_pm_line);       /*Farbe Umrandung*/
+  border-width: 2%;                               /*Umrandungsdicke*/
+  border-style: dashed;                           /*Umrandungsart*/
+}
+#container_mrk {                                  /*Auftragsdetails - Status: 
+                                                    bereit zur Vermarkung*/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  border-color: var(--color_j_rdy_line);          /*Farbe Umrandung*/
+  border-width: 2%;                               /*Umrandungsdicke*/
+  border-style: dashed;                           /*Umrandungsart*/
+}
+#container_dne {                                  /*Auftragsdetails - Status: Vermarkung erstellt*/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  border-color: var(--color_j_mk_line);           /*Farbe Umrandung*/
+  border-width: 2%;                               /*Umrandungsdicke*/
+  border-style: dashed;                           /*Umrandungsart*/
+}
+#container_arc {                                  /*Auftragsdetails - Status: archiviert*/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  border-color: var(--color_j_arc_line);          /*Farbe Umrandung*/
+  border-width: 2%;                               /*Umrandungsdicke*/
+  border-style: dashed;                           /*Umrandungsart*/
+}
+.singlejob-container table{                       /*Tabelle mit Werten*/
+  width: 100%                                     /*Breite*/
+}
+.col_left{                                        /*Spalte links (Name)*/
+  width: 30%;                                     /*Breite*/
+  text-align: left;                               /*Textausrichtung*/
+}
+.col_right{                                       /*Spalte rechts (Wert)*/
+  text-align: right;                              /*Textausrichtung*/
+}
+.singlejob_button_div{                            /*Sammelbox fuer Buttons*/
+  text-align: center;                             /*Textausrichtung*/
+  display: flex;                                  /*Darstellung*/
+  justify-content: center;                        /*Ausrichtung Inhalt*/
+  gap: 1vh;                                       /*Inhaltzwischenraum*/
+}
+.singlejob_button{                                /*Button Zoom auf Auftrag*/
+  width: 30%;                                     /*Breite*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}
+.singlejob_button:hover{                          /*Ueberfahren Button Zoom auf Auftrag*/
+ background-color: var(--color_background_1);     /*Hintergrundfarbe*/
+}
+.singlejob_checkbox{                              /*Button Materialreport aktiv/inaktiv*/
+  width: 30%;                                     /*Breite*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}
+.singlejob_checkbox:hover{                        /*Ueberfahren Button Materialreport*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+}
+.singlejob_icon{                                  /*Symbol Materialreport inaktiv*/
+  height: 2vh;                                    /*Hoehe*/
+  vertical-align: middle;                         /*Ausrichtung vertikal*/
+}
+.singlejob_icon_green{                            /*Symbol Materialreport aktiv*/
+  height: 2vh;                                    /*Hoehe*/
+  vertical-align: middle;                         /*Ausrichtung vertikal*/
+  /*SVG einfaerben -> Gruen*/
+  /*Quelle: Sonntag. Barrett. (15.07.2022). 
+    CSS filter generator to convert from black to target hex color. CodePen.
+    URL: https://codepen.io/sosuke/pen/Pjoqqp [Abgerufen: 04.05.2023]*/
+  filter: invert(38%) sepia(92%) saturate(389%) hue-rotate(87deg) brightness(94%) contrast(87%);
+}
+.singlejob_maps{                                  /*Button Google Maps*/
+  width: 30%;                                     /*Breite*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umradnung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+}
+.singlejob_maps:hover{                            /*Ueberfahren Button Google Maps*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Materialreport + Auftraege loeschen*/
+/*------------------------------------------------------------------------------------------------*/
+#butcreateJobRpt, #butdeleteJobs{                 /*Buttons*/           
+  width: 100%;                                    /*Breite*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+  margin-right: 2%;                               /*Abstand ausserhalb Element rechts*/
+}
+#butcreateJobRpt:hover, #butdeleteJobs:hover{     /*Ueberfahren der Buttons*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Ueberlagerung Materialreport*/
+/*------------------------------------------------------------------------------------------------*/
+.overlay {                                        /*Ueberlagerung*/
+  display: none;                                  /*Darstellung*/
+  position: fixed;                                /*Positionierung*/
+  padding: 2vh;                                   /*Abstand innerhalb Element*/
+  width: 40vw;                                    /*Breite*/
+  left: 49vw;                                     /*Abstand links*/
+  margin-left: -20vw;                             /*Abstand ausserhalb Element links*/
+  height: auto;                                   /*Hoehe*/
+  top: 50vh;                                      /*Abstand oben*/
+  margin-top: -15vh;                              /*Abstand ausserhalb Element oben**/
+  background-color: var(--color_background_3);    /*Hintergrundfarbe*/
+  z-index: 20;                                    /*Darstellungsreihenfolge*/
+  font-family: Arial;                             /*Schriftart*/
+  font-size: 80%;                                 /*Schriftgroesse*/
+  border-color: var(--color_background_1);        /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umrandungsdicke*/
+  -webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);  /*Schatten*/
+  box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);  /*Schatten*/
+}
+.overlay_table_lrow {                             /*Spalte Tabell öinks*/
+  width: 8vh;                                     /*Breite*/
+  text-align: right;                              /*Textausrichtung*/
+}
+.overlay_table_rrow {                             /*Spalte Tabelle rechts*/
+  width: auto;                                    /*Breite*/
+  text-align: left;                               /*Textausrichtung*/
+}
+#overlay_close {                                  /*Ueberlagerung schliessen*/
+  cursor: pointer;                                /*Mauszeiger*/
+  background-color: var(--color_background_2);    /*Hintergrundfarbe*/
+  border-color: var(--color_border);              /*Farbe Umrandung*/
+  border-radius: 0.3vh;                           /*Radius Umrandung*/
+  border-width: 1px;                              /*Umrandungsdicke*/  
+}
+#overlay_close:hover {                            /*Ueberfahren Ueberlagerung schliessen*/
+  background-color: var(--color_background_1);    /*Hintergrundfarbe*/
+}
+#overlay_close_div {                              /*Zentrierung Ueberlagerung schliessen*/
+  display: flex;                                  /*Darstellung*/
+  justify-content: center;                        /*Zwischenraum Inhalt*/
+  align-items: center;                            /*Ausrichtung Inhalt*/
+  height: 5vh;                                    /*Hoehe*/
+}
+/*------------------------------------------------------------------------------------------------*/
+
+/*Entfernen von Pfeilen bei Zahl-Eingaben*/
+/*------------------------------------------------------------------------------------------------*/
+/*Quelle: W3Schools. (o. D.). How TO - Hide Arrows From Input Number. W3Schools.
+  URL: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
+  [Abgerufen: 07.04.2023]*/
+/*Chrome, Safari, Edge, Opera*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+ -webkit-appearance: none;
+ margin: 0;
+}
+/*Firefox*/
+input[type=number] {
+ -moz-appearance: textfield;
+}
+/*------------------------------------------------------------------------------------------------*/
